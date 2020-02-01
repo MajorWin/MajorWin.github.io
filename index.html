@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+
+        <canvas id="webgl" style="width: 140px; height: 150px;" />
+
+        <script type="text/javascript" src="https://get.webgl.org/tdl/tdl-minified.js"></script>
+        <script type="text/javascript" src="spinning_cube.js"></script>
+        <script type="text/javascript">
+
+            function pageLoaded() {
+                canvas = document.getElementById("webgl");
+                try {
+                    gl = canvas.getContext("webgl");
+                }
+                catch (x) {
+                    log('fffffffffuuuuuuuuuu');
+                    return;
+                }
+
+                log('succcccccccccccc');
+                initializeLogo(canvas);
+            }
+
+            function log(msg) {
+                var d = document.createElement("div");
+                d.appendChild(document.createTextNode(msg));
+                document.body.appendChild(d);
+            }
+
+
+            var canvas, gl;
+            window.onload = pageLoaded;
+        </script>
+        <script id="modelVertexShader" type="text/something-not-javascript">
+            uniform mat4 worldViewProjection;
+            attribute vec4 position;
+            void main() {
+              gl_Position = (worldViewProjection * position);
+            }
+        </script>
+        <script id="modelFragmentShader" type="text/something-not-javascript">
+            precision mediump float;
+            void main() {
+              gl_FragColor = vec4(0.0, 0.0, 1.0, 1.0);
+            }
+        </script>
+    </body>
+</html>
